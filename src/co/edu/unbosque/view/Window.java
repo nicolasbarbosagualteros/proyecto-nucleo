@@ -10,7 +10,7 @@ public class Window extends JFrame {
 	
 	public Window() {
 		mainPanel = new MainPanel();
-		setTitle("Tiro parabólico");
+		setTitle("Projectile motion");
 		setSize(1300, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout());
