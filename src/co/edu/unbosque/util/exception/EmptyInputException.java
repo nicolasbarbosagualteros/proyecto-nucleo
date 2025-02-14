@@ -7,6 +7,5 @@ public class EmptyInputException extends Exception{
 	PopUpWindow pop = new PopUpWindow();
 	public EmptyInputException() {
 		super();
-		pop.empty();
 	}
 }

@@ -8,11 +8,10 @@ public class ExceptionChecker {
 	
 	
 	
-	public void validateInput(float text_float) throws EmptyInputException {
+	public void validateInput(String text) throws EmptyInputException {
 		
-		String text_String = Float.toString(text_float);
 		
-		if(text_String.equals("")) {
+		if(text.equals("")) {
 			throw new EmptyInputException();	
 		}
 	}

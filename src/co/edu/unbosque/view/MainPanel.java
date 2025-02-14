@@ -70,6 +70,20 @@ public class MainPanel extends JPanel {
 		add(accept);
 		
 		
+		Image imageBtnReset = new ImageIcon(
+				"assets/restart.png").getImage();
+		ImageIcon imageIconReset = new ImageIcon(imageBtnReset.getScaledInstance(170, 60, Image.SCALE_SMOOTH));
+		restart = new JButton();
+		restart.setIcon(imageIconReset);
+		restart.setToolTipText("Reset inputs");
+		restart.setBounds(1120, 600, 170, 60);
+		restart.setContentAreaFilled(false);
+		restart.setBorderPainted(false);
+		restart.setFocusPainted(false);
+		restart.setVisible(true);
+		add(restart);
+		
+		
 		JLabel anglelbl = new JLabel("Enter the tilt angle (°)");
 		anglelbl.setBounds(30,10,300,30);
 		add(anglelbl);
