@@ -100,29 +100,32 @@ public class MainPanel extends JPanel {
 		initial_speed.setBackground(new Color(231, 233, 234));
 		add(initial_speed);
 		
-		JLabel flyingtime = new JLabel("Enter the flight time (s)");
+		JLabel flyingtime = new JLabel("Flight time (s)");
 		flyingtime.setBounds(30,150,300,30);
 		add(flyingtime);
 		fly_time = new JTextArea();
 		fly_time.setBounds(30, 180, 100, 40);
 		fly_time.setBackground(new Color(231, 233, 234));
+		fly_time.setEditable(false);
 		add(fly_time);
 		
 
-		JLabel y_speed = new JLabel("Enter the maximum height (m)");
+		JLabel y_speed = new JLabel("Maximum height (m)");
 		y_speed.setBounds(250,10,300,30);
 		add(y_speed);
 		y_max = new JTextArea();
 		y_max.setBounds(250, 40, 100, 40);
 		y_max.setBackground(new Color(231, 233, 234));
+		y_max.setEditable(false);
 		add(y_max);	
 		
-		JLabel x_speed = new JLabel("Enter the final position of the ball (m)");
+		JLabel x_speed = new JLabel("Final position of the ball (m)");
 		x_speed.setBounds(250,80,300,30);
 		add(x_speed);
 		x_max = new JTextArea();
 		x_max.setBounds(250, 110, 100, 40);
 		x_max.setBackground(new Color(231, 233, 234));
+		x_max.setEditable(false);
 		add(x_max);	
 		
 		add(bg);

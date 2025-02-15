@@ -7,7 +7,7 @@ public class PopUpWindow {
 	private JOptionPane angle, empty,distance;
 	
 	public void angle() {
-		angle.showMessageDialog(null,"Angle can not be grater than 89 °");
+		angle.showMessageDialog(null,"Angle can not be greater than 89 °");
 	}
 	
 	public void empty() {
@@ -15,6 +15,6 @@ public class PopUpWindow {
 	}
 	
 	public void x_distance() {
-		distance.showMessageDialog(null, "Distance can not be grather than 100 m");
+		distance.showMessageDialog(null, "Distance can not be greater than 100 m");
 	}
 }

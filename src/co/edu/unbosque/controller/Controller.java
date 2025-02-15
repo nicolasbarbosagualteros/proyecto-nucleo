@@ -47,17 +47,18 @@ public class Controller implements ActionListener {
 				}
 				float vo = Float.parseFloat(window.getMainPanel().getInitial_speed().getText());
 				double theta = Double.parseDouble(window.getMainPanel().getAngle().getText());
-				if (theta > 100) {
+				if (theta > 89) {
 					pop.angle();
 					return;
-				} if (calcMaxHeight(vo, theta)>100) {
+				}
+				if (calcMaxHeight(vo, theta) > 100) {
 					pop.x_distance();
 					return;
 				}
 
 				window.getMainPanel().getY_max().setEditable(false);
 				window.getMainPanel().getY_max().setText(String.valueOf(calcMaxHeight(vo, theta)));
-				
+
 			}
 			if (window.getMainPanel().getX_max().getText().equals("")) {
 
@@ -73,18 +74,18 @@ public class Controller implements ActionListener {
 				}
 				float vo = Float.parseFloat(window.getMainPanel().getInitial_speed().getText());
 				double theta = Double.parseDouble(window.getMainPanel().getAngle().getText());
-		
-					if (theta > 100) {
-						pop.angle();
-						return;
-					} if (calcMaxHeight(vo, theta)>100) {
-						pop.x_distance();
-						return;
-					} else {
-						window.getMainPanel().getX_max().setEditable(false);
-						window.getMainPanel().getX_max().setText(String.valueOf(calcMaxReach(vo, theta)));
-					}
-				
+
+				if (theta > 100) {
+					pop.angle();
+					return;
+				}
+				if (calcMaxHeight(vo, theta) > 100) {
+					pop.x_distance();
+					return;
+				} else {
+					window.getMainPanel().getX_max().setEditable(false);
+					window.getMainPanel().getX_max().setText(String.valueOf(calcMaxReach(vo, theta)));
+				}
 
 			}
 			if (window.getMainPanel().getFly_time().getText().equals("")) {
@@ -104,11 +105,11 @@ public class Controller implements ActionListener {
 				if (theta > 100) {
 					pop.angle();
 					return;
-				} if (calcMaxHeight(vo, theta)>100) {
+				}
+				if (calcMaxHeight(vo, theta) > 100) {
 					pop.x_distance();
 					return;
-				}
-				else {
+				} else {
 					window.getMainPanel().getFly_time().setEditable(false);
 					window.getMainPanel().getFly_time().setText(String.valueOf(calcFlightTIme(vo, theta)));
 				}
@@ -119,15 +120,10 @@ public class Controller implements ActionListener {
 		}
 		if (e.getSource() == window.getMainPanel().getRestart()) {
 			window.getMainPanel().getAngle().setText("");
-			window.getMainPanel().getAngle().setEditable(true);
 			window.getMainPanel().getFly_time().setText("");
-			window.getMainPanel().getFly_time().setEditable(true);
 			window.getMainPanel().getY_max().setText("");
-			window.getMainPanel().getY_max().setEditable(true);
 			window.getMainPanel().getX_max().setText("");
-			window.getMainPanel().getX_max().setEditable(true);
 			window.getMainPanel().getInitial_speed().setText("");
-			window.getMainPanel().getInitial_speed().setEditable(true);
 			window.revalidate();
 			window.repaint();
 		}
