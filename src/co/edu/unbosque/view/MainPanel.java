@@ -1,16 +1,13 @@
 package co.edu.unbosque.view;
 
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Image;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 public class MainPanel extends JPanel {
 	
 	private JButton exit, restart, accept;
@@ -18,7 +15,6 @@ public class MainPanel extends JPanel {
 	private JLabel bg,canon;
 	
 	public MainPanel(){
-		
 		setOpaque(true);
 		setLayout(null);
 		setPreferredSize(new Dimension(1300, 700));
@@ -31,16 +27,7 @@ public class MainPanel extends JPanel {
 		bg = new JLabel();
 		bg.setIcon(imageIconLblBg);
 		bg.setBounds(0, 0, 1300, 700);
-		
-		
-		
-		Image imageLblCanon = new ImageIcon(
-				"assets/canon.png").getImage();
-		ImageIcon imageIconLblCanon = new ImageIcon(imageLblCanon.getScaledInstance(300, 223, Image.SCALE_SMOOTH));
-		canon = new JLabel();
-		canon.setIcon(imageIconLblCanon);
-		canon.setBounds(-40, 470, 300, 223);
-		add(canon);
+
 	
 		
 		Image imageBtnExit = new ImageIcon(
@@ -68,7 +55,7 @@ public class MainPanel extends JPanel {
 		accept.setFocusPainted(false);
 		accept.setVisible(true);
 		add(accept);
-		
+
 		
 		Image imageBtnReset = new ImageIcon(
 				"assets/restart.png").getImage();
@@ -126,11 +113,13 @@ public class MainPanel extends JPanel {
 		x_max.setBounds(250, 110, 100, 40);
 		x_max.setBackground(new Color(231, 233, 234));
 		x_max.setEditable(false);
-		add(x_max);	
-		
-		add(bg);
+		add(x_max);
+
+
+        add(bg);
 		
 	}
+
 
 	public JButton getExit() {
 		return exit;
