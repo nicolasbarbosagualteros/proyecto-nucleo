@@ -1,10 +1,13 @@
 package co.edu.unbosque.controller;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 
 import co.edu.unbosque.util.exception.EmptyInputException;
 import co.edu.unbosque.util.exception.ExceptionChecker;
+import co.edu.unbosque.view.PanelCanonRotation;
 import co.edu.unbosque.view.PopUpWindow;
 import co.edu.unbosque.view.Window;
 
@@ -22,6 +25,7 @@ public class Controller implements ActionListener {
 		window.getMainPanel().getExit().addActionListener(this);
 		window.getMainPanel().getAccept().addActionListener(this);
 		window.getMainPanel().getRestart().addActionListener(this);
+
 	}
 
 	@Override
@@ -117,13 +121,22 @@ public class Controller implements ActionListener {
 			if (window.getMainPanel().getAngle().getText().equals("")) {
 				pop.empty();
 			}
+			boolean rot = rotate();
+			if (rot==true) {
+
+			} else {
+				return;
+			}
 		}
+
 		if (e.getSource() == window.getMainPanel().getRestart()) {
 			window.getMainPanel().getAngle().setText("");
 			window.getMainPanel().getFly_time().setText("");
 			window.getMainPanel().getY_max().setText("");
 			window.getMainPanel().getX_max().setText("");
 			window.getMainPanel().getInitial_speed().setText("");
+			window.getPanelCanonRotation().getAngle_txt().setText("0");
+			window.getPanelCanonRotation().getBtnAngle().doClick();
 			window.revalidate();
 			window.repaint();
 		}
@@ -153,5 +166,18 @@ public class Controller implements ActionListener {
 		float x_max = numerator / g;
 		return x_max;
 	}
+
+	public boolean rotate(){
+		if(!window.getMainPanel().getAngle().getText().equals("")){
+			window.getPanelCanonRotation().getAngle_txt().setText(window.getMainPanel().getAngle().getText());
+			window.getPanelCanonRotation().getBtnAngle().doClick();
+			return true;
+		}else {
+			return false;
+		}
+
+			}
+
+
 
 }

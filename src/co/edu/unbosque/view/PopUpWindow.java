@@ -11,7 +11,7 @@ public class PopUpWindow {
 	}
 	
 	public void empty() {
-		empty.showMessageDialog(null,"Please, fill out blanks");
+		empty.showMessageDialog(null,"Please, fill out angle and initial velocity blanks");
 	}
 	
 	public void x_distance() {
