@@ -73,8 +73,6 @@ public class Controller implements ActionListener {
 					pop.x_distance();
 					return;
 				}
-
-
 				window.getMainPanel().getY_max().setEditable(false);
 				window.getMainPanel().getY_max().setText(String.valueOf(calcMaxHeight(vo, theta)));
 

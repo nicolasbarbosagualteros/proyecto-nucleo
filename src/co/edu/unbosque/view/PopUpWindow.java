@@ -17,7 +17,6 @@ public class PopUpWindow {
 	public void x_distance() {
 		distance.showMessageDialog(null, "Distance can not be greater than 100 m");
 	}
-
 	public void negativeVel(){
 		distance.showMessageDialog(null,"Initial velocity can not be negative");
 	}
