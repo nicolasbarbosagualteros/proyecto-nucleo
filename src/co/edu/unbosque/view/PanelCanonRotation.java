@@ -25,7 +25,6 @@ public class PanelCanonRotation extends JPanel implements ActionListener {
        btnAngle.setBounds(10, 10, 100, 30);
        btnAngle.setVisible(false);
        add(btnAngle);
-
        angle_txt = new JTextArea();
        angle_txt.setEditable(true);
        angle_txt.setBounds(10, 40, 100, 30);

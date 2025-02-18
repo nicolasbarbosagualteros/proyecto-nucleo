@@ -12,7 +12,7 @@ public class MainPanel extends JPanel {
 	
 	private JButton exit, restart, accept;
 	private JTextArea angle, initial_speed,fly_time,y_max,x_max;
-	private JLabel bg,canon;
+	private JLabel bg,canon,ball,avatar;
 	
 	public MainPanel(){
 		setOpaque(true);
@@ -56,10 +56,28 @@ public class MainPanel extends JPanel {
 		accept.setVisible(true);
 		add(accept);
 
+		Image imageBall = new ImageIcon(
+				"assets/ball.png").getImage();
+		ImageIcon imageIconBall = new ImageIcon(imageBall.getScaledInstance(70, 60, Image.SCALE_SMOOTH));
+		ball = new JLabel();
+		ball.setIcon(imageIconBall);
+		ball.setBounds(230, 470, 60, 60);
+		ball.setVisible(false);
+		add(ball);
+
+		Image imageAvatar = new ImageIcon(
+				"assets/avatar.jpeg").getImage();
+		ImageIcon imageIconAvatar = new ImageIcon(imageAvatar.getScaledInstance(444, 433, Image.SCALE_SMOOTH));
+		avatar = new JLabel();
+		avatar.setIcon(imageIconAvatar);
+		avatar.setBounds(400, 200, 444, 433);
+		avatar.setVisible(false);
+		add(avatar);
+
 		
 		Image imageBtnReset = new ImageIcon(
 				"assets/restart.png").getImage();
-		ImageIcon imageIconReset = new ImageIcon(imageBtnReset.getScaledInstance(170, 60, Image.SCALE_SMOOTH));
+		ImageIcon imageIconReset = new ImageIcon(imageBtnReset.getScaledInstance(140, 55, Image.SCALE_SMOOTH));
 		restart = new JButton();
 		restart.setIcon(imageIconReset);
 		restart.setToolTipText("Reset inputs");
@@ -200,7 +218,19 @@ public class MainPanel extends JPanel {
 	public void setCanon(JLabel canon) {
 		this.canon = canon;
 	}
-	
-	
-	
+
+	public JLabel getBall() {
+		return ball;
+	}
+	public void setBall(JLabel ball) {
+		this.ball = ball;
+	}
+
+	public JLabel getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(JLabel avatar) {
+		this.avatar = avatar;
+	}
 }
