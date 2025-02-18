@@ -230,7 +230,9 @@ public class Controller implements ActionListener {
 				}
 				if(window.getMainPanel().getBall().getBounds().y==560){
 					sound("assets/explosion.wav",true);
+					window.getMainPanel().getBall().setVisible(false);
 					window.getMainPanel().getAvatar().setVisible(true);
+
 				}
 
 
