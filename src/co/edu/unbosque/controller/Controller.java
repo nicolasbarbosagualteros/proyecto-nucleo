@@ -1,14 +1,11 @@
 package co.edu.unbosque.controller;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
 import java.io.File;
 
 import co.edu.unbosque.util.exception.EmptyInputException;
 import co.edu.unbosque.util.exception.ExceptionChecker;
-import co.edu.unbosque.view.PanelCanonRotation;
 import co.edu.unbosque.view.PopUpWindow;
 import co.edu.unbosque.view.Window;
 
