@@ -140,6 +140,7 @@ public class Controller implements ActionListener {
 				} else {
 					window.getMainPanel().getFly_time().setEditable(false);
 					window.getMainPanel().getFly_time().setText(String.valueOf(calcFlightTIme(vo, theta)));
+
 				}
 			}
 			if (window.getMainPanel().getAngle().getText().equals("")) {
