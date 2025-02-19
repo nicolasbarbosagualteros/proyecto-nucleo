@@ -3,9 +3,11 @@ package co.edu.unbosque.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.InputMismatchException;
 
 import co.edu.unbosque.util.exception.EmptyInputException;
 import co.edu.unbosque.util.exception.ExceptionChecker;
+import co.edu.unbosque.util.exception.InputNotValidException;
 import co.edu.unbosque.view.PopUpWindow;
 import co.edu.unbosque.view.Window;
 
@@ -48,7 +50,11 @@ public class Controller implements ActionListener {
 
 			if (window.getMainPanel().getY_max().getText().equals("")) {
 
-				try {
+                exception.validateNumber(window.getMainPanel().getInitial_speed().getText());
+                exception.validateNumber(window.getMainPanel().getAngle().getText());
+
+
+                try {
 					String vo_string = window.getMainPanel().getInitial_speed().getText();
 					String theta_string = window.getMainPanel().getAngle().getText();
 					exception.validateInput(vo_string);
@@ -58,8 +64,10 @@ public class Controller implements ActionListener {
 					pop.empty();
 					return;
 				}
+
 				float vo = Float.parseFloat(window.getMainPanel().getInitial_speed().getText());
 				double theta = Double.parseDouble(window.getMainPanel().getAngle().getText());
+
 
 				if(Integer.parseInt(window.getMainPanel().getInitial_speed().getText())<0){
 					pop.negativeVel();
@@ -78,9 +86,10 @@ public class Controller implements ActionListener {
 
 			}
 			if (window.getMainPanel().getX_max().getText().equals("")) {
+                exception.validateNumber(window.getMainPanel().getInitial_speed().getText());
+                exception.validateNumber(window.getMainPanel().getAngle().getText());
 
-				try {
-
+                try {
 					String vo_string = window.getMainPanel().getInitial_speed().getText();
 					String theta_string = window.getMainPanel().getAngle().getText();
 					exception.validateInput(vo_string);
@@ -92,7 +101,9 @@ public class Controller implements ActionListener {
 				float vo = Float.parseFloat(window.getMainPanel().getInitial_speed().getText());
 				double theta = Double.parseDouble(window.getMainPanel().getAngle().getText());
 
-				if(Integer.parseInt(window.getMainPanel().getInitial_speed().getText())<0){
+
+
+                if(Integer.parseInt(window.getMainPanel().getInitial_speed().getText())<0){
 					pop.negativeVel();
 					return;
 				}
@@ -111,8 +122,10 @@ public class Controller implements ActionListener {
 
 			}
 			if (window.getMainPanel().getFly_time().getText().equals("")) {
+                exception.validateNumber(window.getMainPanel().getInitial_speed().getText());
+                exception.validateNumber(window.getMainPanel().getAngle().getText());
 
-				try {
+                try {
 
 					String vo_string = window.getMainPanel().getInitial_speed().getText();
 					String theta_string = window.getMainPanel().getAngle().getText();
@@ -124,6 +137,7 @@ public class Controller implements ActionListener {
 				}
 				float vo = Float.parseFloat(window.getMainPanel().getInitial_speed().getText());
 				double theta = Double.parseDouble(window.getMainPanel().getAngle().getText());
+
 				if(Integer.parseInt(window.getMainPanel().getInitial_speed().getText())<0){
 					pop.negativeVel();
 					return;
@@ -230,7 +244,9 @@ public class Controller implements ActionListener {
 				}
 				if(window.getMainPanel().getBall().getBounds().y==560){
 					sound("assets/explosion.wav",true);
+					window.getMainPanel().getBall().setVisible(false);
 					window.getMainPanel().getAvatar().setVisible(true);
+
 				}
 
 

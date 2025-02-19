@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class PopUpWindow {
 
-	private JOptionPane angle, empty,distance;
+	private JOptionPane angle, empty,distance, input;
 	
 	public void angle() {
 		angle.showMessageDialog(null,"Angle can not be greater than 89 ° nor smaller than 0 °");
@@ -20,5 +20,10 @@ public class PopUpWindow {
 	public void negativeVel(){
 		distance.showMessageDialog(null,"Initial velocity can not be negative");
 	}
+
+	public void invalidInput(){
+		input.showMessageDialog(null,"Invalid input");
+	}
+
 }
 
