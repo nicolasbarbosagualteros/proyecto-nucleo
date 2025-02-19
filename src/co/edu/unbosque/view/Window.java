@@ -7,11 +7,9 @@ public class Window extends JFrame {
 
 	private MainPanel mainPanel;
 	private PanelCanonRotation panelCanonRotation;
-
 	public Window() {
 		mainPanel = new MainPanel();
 		panelCanonRotation = new PanelCanonRotation();
-
 		setTitle("Projectile motion");
 		setSize(1300, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,4 +44,5 @@ public class Window extends JFrame {
 	public void setPanelCanonRotation(PanelCanonRotation panelCanonRotation) {
 		this.panelCanonRotation = panelCanonRotation;
 	}
+
 }
