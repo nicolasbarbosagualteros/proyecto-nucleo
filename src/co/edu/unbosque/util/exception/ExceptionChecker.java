@@ -12,8 +12,6 @@ public class ExceptionChecker {
 	
 	
 	public void validateInput(String text) throws EmptyInputException {
-		
-		
 		if(text.equals("")) {
 			throw new EmptyInputException();	
 		}
@@ -22,7 +20,6 @@ public class ExceptionChecker {
 	public void validateNumber(String texto) {
 		Pattern p = Pattern.compile("^\\d+$");
 		Matcher m = p.matcher(texto);
-
 		if (!m.matches()) {
 			JOptionPane.showMessageDialog(null, "Please enter numbers only.",
 					"Invalid input", JOptionPane.ERROR_MESSAGE);

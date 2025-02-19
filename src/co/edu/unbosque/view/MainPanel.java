@@ -22,14 +22,12 @@ public class MainPanel extends JPanel {
 		
 		
 		Image imageLblBg = new ImageIcon(
-				"assets/bg.png").getImage();
+				"assets/map.png").getImage();
 		ImageIcon imageIconLblBg = new ImageIcon(imageLblBg.getScaledInstance(1300, 700, Image.SCALE_SMOOTH));
 		bg = new JLabel();
 		bg.setIcon(imageIconLblBg);
 		bg.setBounds(0, 0, 1300, 700);
 
-	
-		
 		Image imageBtnExit = new ImageIcon(
 				"assets/exit.png").getImage();
 		ImageIcon imageIconBtnExit = new ImageIcon(imageBtnExit.getScaledInstance(46, 48, Image.SCALE_SMOOTH));
@@ -67,13 +65,12 @@ public class MainPanel extends JPanel {
 
 		Image imageAvatar = new ImageIcon(
 				"assets/avatar.jpeg").getImage();
-		ImageIcon imageIconAvatar = new ImageIcon(imageAvatar.getScaledInstance(444, 433, Image.SCALE_SMOOTH));
+		ImageIcon imageIconAvatar = new ImageIcon(imageAvatar.getScaledInstance(144, 133, Image.SCALE_SMOOTH));
 		avatar = new JLabel();
 		avatar.setIcon(imageIconAvatar);
-		avatar.setBounds(400, 200, 444, 433);
+		avatar.setBounds(400, 200, 144, 133);
 		avatar.setVisible(false);
 		add(avatar);
-
 		
 		Image imageBtnReset = new ImageIcon(
 				"assets/restart.png").getImage();
@@ -87,8 +84,7 @@ public class MainPanel extends JPanel {
 		restart.setFocusPainted(false);
 		restart.setVisible(true);
 		add(restart);
-		
-		
+
 		JLabel anglelbl = new JLabel("Enter the tilt angle (°)");
 		anglelbl.setBounds(30,10,300,30);
 		add(anglelbl);
@@ -98,11 +94,12 @@ public class MainPanel extends JPanel {
 		add(angle);
 		
 		JLabel initspeedlbl = new JLabel("Enter the initial velocity (m/s)");
-		initspeedlbl.setBounds(30,80,300,30);
+		initspeedlbl.setBounds(250,80,300,30);
 		add(initspeedlbl);
 		initial_speed = new JTextArea();
-		initial_speed.setBounds(30, 110, 100, 40);
+		initial_speed.setBounds(250, 110, 100, 40);
 		initial_speed.setBackground(new Color(231, 233, 234));
+		initial_speed.setEditable(false);
 		add(initial_speed);
 		
 		JLabel flyingtime = new JLabel("Flight time (s)");
@@ -111,7 +108,7 @@ public class MainPanel extends JPanel {
 		fly_time = new JTextArea();
 		fly_time.setBounds(30, 180, 100, 40);
 		fly_time.setBackground(new Color(231, 233, 234));
-		fly_time.setEditable(false);
+		fly_time.setEditable(true);
 		add(fly_time);
 		
 
@@ -125,14 +122,13 @@ public class MainPanel extends JPanel {
 		add(y_max);	
 		
 		JLabel x_speed = new JLabel("Final position of the ball (m)");
-		x_speed.setBounds(250,80,300,30);
+		x_speed.setBounds(30,80,300,30);
 		add(x_speed);
 		x_max = new JTextArea();
-		x_max.setBounds(250, 110, 100, 40);
+		x_max.setBounds(30, 110, 100, 40);
 		x_max.setBackground(new Color(231, 233, 234));
-		x_max.setEditable(false);
+		x_max.setEditable(true);
 		add(x_max);
-
 
         add(bg);
 		

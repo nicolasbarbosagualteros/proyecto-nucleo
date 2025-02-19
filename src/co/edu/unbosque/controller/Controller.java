@@ -8,6 +8,7 @@ import java.util.InputMismatchException;
 import co.edu.unbosque.util.exception.EmptyInputException;
 import co.edu.unbosque.util.exception.ExceptionChecker;
 import co.edu.unbosque.util.exception.InputNotValidException;
+import co.edu.unbosque.view.Chronometer;
 import co.edu.unbosque.view.PopUpWindow;
 import co.edu.unbosque.view.Window;
 
@@ -22,6 +23,7 @@ public class Controller implements ActionListener {
 	private float g = 9.81f;
 	private ExceptionChecker exception = new ExceptionChecker();
 	private Clip audio;
+	private Chronometer chronometer;
 
 	public Controller() {
 
@@ -42,130 +44,57 @@ public class Controller implements ActionListener {
 
 		if (e.getSource() == window.getMainPanel().getAccept()) {
 
-			if(!window.getMainPanel().getX_max().getText().isEmpty()){
-				window.getMainPanel().getX_max().setText("");
-				window.getMainPanel().getY_max().setText("");
-				window.getMainPanel().getFly_time().setText("");
-			}
+			try {
+				String fly = window.getMainPanel().getFly_time().getText();
+				String theta_string = window.getMainPanel().getAngle().getText();
+				String d = window.getMainPanel().getX_max().getText();
+				exception.validateInput(fly);
+				exception.validateInput(theta_string);
+				exception.validateInput(d);
 
-			if (window.getMainPanel().getY_max().getText().equals("")) {
-
-                exception.validateNumber(window.getMainPanel().getInitial_speed().getText());
-                exception.validateNumber(window.getMainPanel().getAngle().getText());
-
-
-                try {
-					String vo_string = window.getMainPanel().getInitial_speed().getText();
-					String theta_string = window.getMainPanel().getAngle().getText();
-					exception.validateInput(vo_string);
-					exception.validateInput(theta_string);
-
-				} catch (EmptyInputException em) {
-					pop.empty();
-					return;
-				}
-
-				float vo = Float.parseFloat(window.getMainPanel().getInitial_speed().getText());
-				double theta = Double.parseDouble(window.getMainPanel().getAngle().getText());
-
-
-				if(Integer.parseInt(window.getMainPanel().getInitial_speed().getText())<0){
-					pop.negativeVel();
-					return;
-				}
-				if (theta > 89||theta < 0) {
-					pop.angle();
-					return;
-				}
-				if (calcMaxReach(vo, theta) > 100) {
-					pop.x_distance();
-					return;
-				}
-				window.getMainPanel().getY_max().setEditable(false);
-				window.getMainPanel().getY_max().setText(String.valueOf(calcMaxHeight(vo, theta)));
-
-			}
-			if (window.getMainPanel().getX_max().getText().equals("")) {
-                exception.validateNumber(window.getMainPanel().getInitial_speed().getText());
-                exception.validateNumber(window.getMainPanel().getAngle().getText());
-
-                try {
-					String vo_string = window.getMainPanel().getInitial_speed().getText();
-					String theta_string = window.getMainPanel().getAngle().getText();
-					exception.validateInput(vo_string);
-					exception.validateInput(theta_string);
-				} catch (EmptyInputException em) {
-					pop.empty();
-					return;
-				}
-				float vo = Float.parseFloat(window.getMainPanel().getInitial_speed().getText());
-				double theta = Double.parseDouble(window.getMainPanel().getAngle().getText());
-
-
-
-                if(Integer.parseInt(window.getMainPanel().getInitial_speed().getText())<0){
-					pop.negativeVel();
-					return;
-				}
-
-				if (theta > 89||theta < 0) {
-					pop.angle();
-					return;
-				}
-				if (calcMaxReach(vo, theta) > 100) {
-					pop.x_distance();
-					return;
-				} else {
-					window.getMainPanel().getX_max().setEditable(false);
-					window.getMainPanel().getX_max().setText(String.valueOf(calcMaxReach(vo, theta)));
-				}
-
-			}
-			if (window.getMainPanel().getFly_time().getText().equals("")) {
-                exception.validateNumber(window.getMainPanel().getInitial_speed().getText());
-                exception.validateNumber(window.getMainPanel().getAngle().getText());
-
-                try {
-
-					String vo_string = window.getMainPanel().getInitial_speed().getText();
-					String theta_string = window.getMainPanel().getAngle().getText();
-					exception.validateInput(vo_string);
-					exception.validateInput(theta_string);
-				} catch (EmptyInputException e1) {
-					pop.empty();
-					return;
-				}
-				float vo = Float.parseFloat(window.getMainPanel().getInitial_speed().getText());
-				double theta = Double.parseDouble(window.getMainPanel().getAngle().getText());
-
-				if(Integer.parseInt(window.getMainPanel().getInitial_speed().getText())<0){
-					pop.negativeVel();
-					return;
-				}
-				if (theta > 89||theta < 0) {
-					pop.angle();
-					return;
-				}
-				if (calcMaxReach(vo, theta) > 100) {
-					pop.x_distance();
-					return;
-				} else {
-					window.getMainPanel().getFly_time().setEditable(false);
-					window.getMainPanel().getFly_time().setText(String.valueOf(calcFlightTIme(vo, theta)));
-
-				}
-			}
-			if (window.getMainPanel().getAngle().getText().equals("")) {
+			} catch (EmptyInputException em) {
 				pop.empty();
-			}
-			boolean rot = rotate();
-			if (rot==true) {
-
-			} else {
 				return;
 			}
+
+			if (Integer.parseInt(window.getMainPanel().getAngle().getText()) > 89||Integer.parseInt(window.getMainPanel().getAngle().getText())  < 1) {
+				pop.angle();
+				return;
+			}
+
+			if (Integer.parseInt(window.getMainPanel().getX_max().getText())> 100||Integer.parseInt(window.getMainPanel().getX_max().getText())< 1) {
+				pop.x_distance();
+				return;
+			}
+
+			if (Integer.parseInt(window.getMainPanel().getFly_time().getText()) > 20||Integer.parseInt(window.getMainPanel().getFly_time().getText())< 1) {
+				pop.time();
+				return;
+			}
+
+
+			if (window.getMainPanel().getY_max().getText().equals("")) {
+				exception.validateNumber(window.getMainPanel().getX_max().getText());
+                exception.validateNumber(window.getMainPanel().getFly_time().getText());
+                exception.validateNumber(window.getMainPanel().getAngle().getText());
+
+				double theta = Double.parseDouble(window.getMainPanel().getAngle().getText());
+				float time = Float.parseFloat(window.getMainPanel().getFly_time().getText());
+				float vonum = Float.parseFloat(window.getMainPanel().getX_max().getText());
+				float voden = (float) ((Math.cos(Math.toRadians(theta)))*time);
+				float vo = calcInitialSpeed(theta,time,vonum,voden);
+
+
+				window.getMainPanel().getY_max().setText(String.valueOf(calcMaxHeight(vo, theta)));
+			}
+			rotate();
 			window.getMainPanel().getBall().setVisible(true);
 			position();
+
+			chronometer = new Chronometer();
+			if(window.getMainPanel().getBall().getBounds().getHeight()>570){
+				System.out.println("LIMITE");
+			}
 
 
 		}
@@ -182,6 +111,8 @@ public class Controller implements ActionListener {
 			window.getPanelCanonRotation().getAngle_txt().setText("0");
 			window.getPanelCanonRotation().getBtnAngle().doClick();
 
+		chronometer.setDefaultCloseOperation(0);
+
 			window.revalidate();
 			window.repaint();
 		}
@@ -190,7 +121,6 @@ public class Controller implements ActionListener {
 	}
 
 	public float calcMaxHeight(float initial_velocity, double angle) {
-
 		angle = Math.toRadians(angle);
 		float numerator = (float) ((initial_velocity) * (initial_velocity) * Math.sin(angle) * Math.sin(angle));
 		float denominator = g * 2;
@@ -199,18 +129,13 @@ public class Controller implements ActionListener {
 		return y_max;
 	}
 
-	public float calcMaxReach(float initial_velocity, double angle) {
-		angle = 2 * Math.toRadians(angle);
-		float numerator = (float) (initial_velocity * initial_velocity * Math.sin(angle));
-		float x_max = numerator / g;
-		return x_max;
-	}
-
-	public float calcFlightTIme(float initial_velocity, double angle) {
-		angle = Math.toRadians(angle);
-		float numerator = (float) (2 * initial_velocity * Math.sin(angle));
-		float x_max = numerator / g;
-		return x_max;
+	public float calcInitialSpeed(double theta, float time, float vonum, float voden) {
+		theta = Double.parseDouble(window.getMainPanel().getAngle().getText());
+		time = Float.parseFloat(window.getMainPanel().getFly_time().getText());
+		vonum = Float.parseFloat(window.getMainPanel().getX_max().getText());
+		voden = (float) ((Math.cos(Math.toRadians(theta)))*time);
+		float vo = vonum/voden;
+		return vo;
 	}
 
 	public boolean rotate(){
@@ -226,28 +151,28 @@ public class Controller implements ActionListener {
 	public void position() {
 		new Thread(() -> {
 			try {
-				float flyTime = Float.parseFloat(window.getMainPanel().getFly_time().getText());
-				float vo = Float.parseFloat(window.getMainPanel().getInitial_speed().getText());
 				float angle = (float) Math.toRadians(Float.parseFloat(window.getMainPanel().getAngle().getText()));
+				float time = Float.parseFloat(window.getMainPanel().getFly_time().getText());
+				float vonum = Float.parseFloat(window.getMainPanel().getX_max().getText());
+				float voden = (float) ((Math.cos(Math.toRadians(angle)))*time);
+				float vo = calcInitialSpeed(angle,time,vonum,voden);
 				float cos = (float) Math.cos(angle);
 				float sin = (float) Math.sin(angle);
 				float g = 9.81f;
 				float scaleX = 9f;
-				for (float i = 1; i <= flyTime; i += 0.1) {
+				for (float i = 1; i <= time; i += 0.01) {
 					int pos_x = Math.round((vo * cos * i) * scaleX) + 250;
-					int pos_y = (int) (Math.round(vo * sin * i) - Math.round((g * i * i) / 2)) * (-1) + 495;
+					int pos_y = (int) ((int) (Math.round(vo * sin * i) - Math.round((g * i * i) / 2)) * (-1)+ 495);
 					window.getMainPanel().getBall().setBounds(pos_x, pos_y, 70, 60);
 					window.getMainPanel().getBall().repaint();
 					Thread.sleep(10);
-					window.getMainPanel().getBall().setBounds(pos_x, 560, 70, 60);
 
 				}
-				if(window.getMainPanel().getBall().getBounds().y==560){
+				chronometer.validateTime(time);
 					sound("assets/explosion.wav",true);
 					window.getMainPanel().getBall().setVisible(false);
+					window.getMainPanel().getAvatar().setBounds(window.getMainPanel().getBall().getBounds().x,window.getMainPanel().getBall().getBounds().y,144,133);
 					window.getMainPanel().getAvatar().setVisible(true);
-
-				}
 
 
 			} catch (Exception e) {
@@ -266,9 +191,10 @@ public class Controller implements ActionListener {
 			audio.open(audioInputStream);
 			audio.start();
 			audioInputStream.close();
+
 		}
 		catch (Exception ex) {
-			System.out.println("Error al reproducir la música= " + ex.getMessage());
+			System.out.println("Error al reproducir sonido de explosión" + ex.getMessage());
 		}
 	}
 }
