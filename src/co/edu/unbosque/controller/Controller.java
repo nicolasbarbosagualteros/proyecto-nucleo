@@ -163,11 +163,17 @@ public class Controller implements ActionListener {
 				for (float i = 1; i <= time; i += 0.01) {
 					int pos_x = Math.round((vo * cos * i) * scaleX) + 250;
 					int pos_y = (int) ((int) (Math.round(vo * sin * i) - Math.round((g * i * i) / 2)) * (-1)+ 495);
+					if(window.getMainPanel().getBall().getBounds().y>590){
+						chronometer.stop();
+						pop.notPosible();
+						return;
+					}
 					window.getMainPanel().getBall().setBounds(pos_x, pos_y, 70, 60);
 					window.getMainPanel().getBall().repaint();
 					Thread.sleep(10);
 
 				}
+				chronometer.stop();
 				chronometer.validateTime(time);
 					sound("assets/explosion.wav",true);
 					window.getMainPanel().getBall().setVisible(false);

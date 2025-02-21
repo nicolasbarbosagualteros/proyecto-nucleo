@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class PopUpWindow {
 
-	private JOptionPane angle, empty,distance, input, time;
+	private JOptionPane angle, empty,distance, input, time, launch;
 	
 	public void angle() {
 		angle.showMessageDialog(null,"Angle can not be greater than 89 ° nor smaller than 0 °");
@@ -27,6 +27,10 @@ public class PopUpWindow {
 
 	public void time(){
 		time.showMessageDialog(null,"Flight can not last more than 20 seconds nor shorter than 1 seconds");
+	}
+
+	public void notPosible(){
+		launch.showMessageDialog(null,"It is not possible to make this shot");
 	}
 }
 
